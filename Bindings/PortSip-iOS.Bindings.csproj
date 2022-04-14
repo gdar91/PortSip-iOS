@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-ios</TargetFramework>
+    <RootNamespace>PortSip_iOS.Bindings</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <NativeReference Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\..\PortSIPVoIPSDK.a'))">
+      <Kind>Static</Kind>
+      <Frameworks>AVFoundation AudioToolBox VideoToolbox CoreVideo CoreMedia MetalKit GLKit Metal OpenGLES QuartzCore</Frameworks>
+      <LinkerFlags>-lresolv</LinkerFlags>
+    </NativeReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lib\PortSip-iOS.Lib.csproj" />
+  </ItemGroup>
+</Project>
